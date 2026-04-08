@@ -1,3 +1,14 @@
+---
+title: Natural Language Reward Definition Environment
+emoji: robot
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 8000
+pinned: false
+license: bsd-3-clause
+---
+
 # Natural Language Reward Definition Environment
 
 An OpenEnv-compliant reinforcement learning environment where the reward function is defined in plain English and interpreted by an LLM judge instead of hardcoded task logic.

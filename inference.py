@@ -6,6 +6,9 @@ import asyncio
 import os
 from typing import List, Optional
 
+os.environ.setdefault("API_BASE_URL", "https://router.huggingface.co/v1")
+os.environ.setdefault("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
+
 from nl_reward_env import BaselineAgent
 from nl_reward_env.environment import NaturalLanguageRewardEnvironment
 from nl_reward_env.models import NaturalLanguageRewardAction
@@ -104,4 +107,12 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except Exception as exc:
+        print(f"[START] task=bootstrap env={BENCHMARK} model={MODEL_NAME}", flush=True)
+        print(
+            f"[STEP] step=1 action=bootstrap reward=0.00 done=true error={str(exc).replace(chr(10), ' ')}",
+            flush=True,
+        )
+        print("[END] success=false steps=1 score=0.000 rewards=0.00", flush=True)
